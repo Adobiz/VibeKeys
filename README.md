@@ -17,7 +17,7 @@
 
 ---
 
-VibeKeys 为 `fzf`、`lazygit`、`gh` 等交互式 CLI 工具提供一套更自然的鼠标操作方式。它捕获鼠标侧键，识别当前前台窗口，并通过 Windows `SendInput` 注入键盘动作。
+VibeKeys 为 `codex CLI`、`claude code`、`kimi code` 等交互式 Agent 工具提供一套更简便的鼠标操作方式。它捕获鼠标侧键，识别当前前台窗口，并通过 Windows `SendInput` 注入键盘动作。
 
 默认情况下，映射只在终端窗口中生效。切回浏览器或其他软件时，鼠标仍保持原来的前进、后退行为。
 
@@ -100,7 +100,7 @@ cargo build --release
 2. 双击启动桌面应用。
 3. 在“键位映射”中选择动作。
 4. 在“生效范围”中保留“仅 CLI”，或按需选择“所有窗口”。
-5. 打开 Windows Terminal，在 `fzf` 或 `lazygit` 中按下鼠标侧键。
+5. 打开 Windows Terminal，在 `codex CLI` 或 `claude code` 中按下鼠标侧键。
 
 最小化 VibeKeys 会隐藏到系统托盘并继续捕获；点击托盘图标或再次启动 EXE 可以恢复窗口。点击标题栏关闭按钮或托盘菜单中的“退出”会直接结束程序。配置保存在：
 
