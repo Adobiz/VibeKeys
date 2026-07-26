@@ -6,9 +6,10 @@
 
 A minimalist Windows utility that turns mouse buttons into focused keyboard actions for terminal-first workflows.
 
-[![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=flat-square&logo=windows11&logoColor=white)](#系统要求)
+[![Version](https://img.shields.io/github/v/release/Adobiz/VibeKeys?color=blue&label=version)](https://github.com/Adobiz/VibeKeys/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/Adobiz/VibeKeys/releases)
 [![Rust](https://img.shields.io/badge/Rust-2024-000000?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
-[![Status](https://img.shields.io/badge/status-MVP-17745B?style=flat-square)](#当前边界)
+[![Size](https://img.shields.io/badge/Size-1.2M-brightgreen)](https://github.com/Adobiz/VibeKeys/releases/latest)
 
 English | [中文](README_zh-CN.md) 
 
