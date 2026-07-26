@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "terminal_processes": [
+    "WindowsTerminal.exe",
+    "pwsh.exe",
+    "powershell.exe",
+    "cmd.exe"
+  ],
+  "bindings": {
+    "middle": "enter",
+    "x1": "up",
+    "x2": "down"
+  }
+}

@@ -1,0 +1,7 @@
+/target/
+/target-desktop/
+/outputs/
+*.exe
+*.pdb
+.DS_Store
+Thumbs.db
