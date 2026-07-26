@@ -246,9 +246,7 @@ Issue 和 Pull Request 都欢迎。提交问题时，建议附上：
 目前没有 macOS/Linux 支持。
 
 ## License
-MIT License.
-
-Copyright (c) 2026 Adobiz
+MIT © Adobiz
 
 ---
 
