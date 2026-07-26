@@ -24,6 +24,10 @@ VibeKeys —— 为 Codex CLI、Claude Code、Kimi Code 等交互式 AI Agent �
   
 它通过捕获鼠标侧键，自动识别当前前台窗口，并利用 Windows SendInput API注入键盘指令，让你在不离开终端的情况下更流畅地操控 Agent。
 
+<div align="center">
+<img src="assets/show.gif" width="600">
+</div>
+
 ## Highlights
 
 | | 能力 | 说明 |
