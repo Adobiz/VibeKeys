@@ -202,6 +202,9 @@ Not included yet:
 
 - macOS or Linux support
 
+## License
+MIT © Adobiz
+
 ---
 
 <div align="center">
