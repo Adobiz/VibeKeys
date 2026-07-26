@@ -69,7 +69,7 @@ Default terminal allowlist:
 - `powershell.exe`
 - `cmd.exe`
 
-## Desktop interface
+## Desktop UI
 The left sidebar provides three independent workspaces:
 
 - **Bindings**: Toggle mapping on/off and choose actions for X1, X2, and the middle button.
@@ -79,11 +79,6 @@ The left sidebar provides three independent workspaces:
 - **Activation scope**: Switch between "CLI only" and "All windows".
 
 The 中 / EN control on the left switches the UI language instantly. Page titles, navigation, action names, save status, and tooltips all switch together.
-
-## Requirements
-
-- Windows 10 or Windows 11
-- Microsoft Edge WebView2 Runtime
 
 ## Installation
 
@@ -143,6 +138,14 @@ Supported `scope` values:
 - `cli`: only active in allowlisted terminal processes.
 - `all`: active in every foreground window.
 
+`language` can be `zh` or `en`; you can also switch it directly in the desktop UI.
+
+`terminal_processes` is the process whitelist used by "CLI only" mode. You can add or remove processes in the Activation scope page; omitting .exe is fine, and changes are auto-saved and take effect immediately.
+
+
+## Privacy
+VibeKeys requires no account, uploads no configuration, and contains no telemetry. Window identification, mouse capture, device enumeration, and config read/write are all performed locally.
+
 ## Diagnostic Commands
 
 ```powershell
@@ -162,6 +165,11 @@ cargo run -- run --debug
 | `inject <action>` | Inject one keyboard action into the current foreground window. |
 | `init-config` | Generate a default config in the current directory. |
 | `run --debug` | Print the full capture, context, mapping, and injection decision chain. |
+
+## Requirements
+
+- Windows 10 or Windows 11
+- Microsoft Edge WebView2 Runtime
 
 ## Project Structure
 
