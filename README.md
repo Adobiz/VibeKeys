@@ -23,6 +23,10 @@ VibeKeys provides a more intuitive mouse-driven experience for interactive AI Ag
 
 It captures mouse side buttons, detects the active foreground window, and injects keyboard actions via the Windows SendInput API — enabling smoother agent control without leaving your terminal.
 
+<div align="center">
+<img src="assets/show.gif" width="600">
+</div>
+
 ## Highlights
 
 |     | Feature | Description |
