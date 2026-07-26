@@ -10,6 +10,8 @@ A minimalist Windows utility that turns mouse buttons into focused keyboard acti
 [![Rust](https://img.shields.io/badge/Rust-2024-000000?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![Status](https://img.shields.io/badge/status-MVP-17745B?style=flat-square)](#当前边界)
 
+English | [中文](README_zh-CN.md) 
+
 **Single EXE · Native Desktop UI · Real-time Mapping · CLI-aware**
 
 </div>
