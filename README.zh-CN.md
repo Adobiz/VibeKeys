@@ -245,12 +245,17 @@ Issue 和 Pull Request 都欢迎。提交问题时，建议附上：
 
 ## 当前边界
 
-目前没有 macOS/Linux 支持。鼠标品牌识别基于硬件 VID，是尽力而为的辅助信息，不影响按键捕获与映射。
+目前没有 macOS/Linux 支持。
+
+## License
+MIT License.
+
+Copyright (c) 2026 Adobiz
 
 ---
 
 <div align="center">
 
-Built for people who live one command away from everything.
+为重度 vibe coding 而生。
 
 </div>
