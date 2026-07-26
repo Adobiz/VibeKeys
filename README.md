@@ -4,13 +4,14 @@
 
 ### Make your mouse speak terminal.
 
-把鼠标侧键变成终端里的方向感。  
-一个轻量、原生、Windows-first 的鼠标键位映射工具。
+A minimalist Windows utility that turns mouse buttons into focused keyboard actions for terminal-first workflows.
 
-[![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=flat-square&logo=windows11&logoColor=white)](#系统要求)
+[![Version](https://img.shields.io/github/v/release/Adobiz/VibeKeys?color=blue&label=version)](https://github.com/Adobiz/VibeKeys/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/Adobiz/VibeKeys/releases)
 [![Rust](https://img.shields.io/badge/Rust-2024-000000?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
-[![Status](https://img.shields.io/badge/status-MVP-17745B?style=flat-square)](#当前边界)
-[![Tests](https://img.shields.io/badge/tests-12%20passing-17745B?style=flat-square)](#开发)
+[![Size](https://img.shields.io/badge/Size-1.2M-brightgreen)](https://github.com/Adobiz/VibeKeys/releases/latest)
+
+English | [中文](README_zh-CN.md) 
 
 **Single EXE · Native Desktop UI · Real-time Mapping · CLI-aware**
 
@@ -18,39 +19,39 @@
 
 ---
 
-VibeKeys 为 `fzf`、`lazygit`、`gh` 等交互式 CLI 工具提供一套更自然的鼠标操作方式。它捕获鼠标侧键，识别当前前台窗口，并通过 Windows `SendInput` 注入键盘动作。
+VibeKeys provides a more intuitive mouse-driven experience for interactive AI Agent tools such as Codex CLI, Claude Code, and Kimi Code.
 
-默认情况下，映射只在终端窗口中生效。切回浏览器或其他软件时，鼠标仍保持原来的前进、后退行为。
+It captures mouse side buttons, detects the active foreground window, and injects keyboard actions via the Windows SendInput API — enabling smoother agent control without leaving your terminal.
 
 ## Highlights
 
-| | 能力 | 说明 |
-|---|---|---|
-| **01** | 原生桌面应用 | 前端、配置与捕获后端封装在同一个 EXE 中，不启动浏览器或本地 Web 服务 |
-| **02** | 实时键位映射 | 修改映射后自动保存，并立即作用于正在运行的捕获线程 |
-| **03** | 生效范围控制 | 可选择“仅 CLI”或“所有窗口”，默认保护浏览器等普通软件 |
-| **04** | 鼠标设备识别 | 读取 Raw Input 设备信息，展示品牌、VID、PID 与设备路径 |
-| **05** | 可诊断 | 提供捕获、窗口识别、键盘注入和完整调试链路 |
-| **06** | 托盘常驻 | 最小化后隐藏到系统托盘，点击托盘图标即可恢复窗口 |
-| **07** | 中英双语 | 中文与 English 一键切换，语言偏好随配置持久化 |
-| **08** | 统一品牌图标 | 内容区、标题栏、任务栏、托盘与 EXE 使用同一套 VK 图标 |
+|     | Feature | Description |
+| --- | --- | --- |
+| **01** | Native desktop app | UI, config, mouse capture, and backend logic are packaged into one Windows EXE. |
+| **02** | Real-time mapping | Change a binding in the UI and it applies immediately. |
+| **03** | Activation scope | Use mappings only in CLI windows, or enable them globally for all foreground apps. |
+| **04** | Custom terminal allowlist | Add or remove terminal process names directly from the UI. |
+| **05** | Mouse device detection | Inspect detected mouse devices, VID, PID, brand hints, and Raw Input paths. |
+| **06** | Tray resident mode | Minimize to tray, restore from tray, close to exit. |
+| **07** | Bilingual UI | Switch between Chinese and English from the desktop interface. |
+| **08** | Local-first privacy | No account, no telemetry, no cloud sync. Everything stays on your machine. |
 
-## 默认映射
+## Default Bindings
 
-| 鼠标输入 | 默认动作 | 常见用途 |
-|---|---:|---|
-| 侧键 4 / X1 | `Up` | 上移选择项 |
-| 侧键 5 / X2 | `Down` | 下移选择项 |
-| 滚轮中键 | `Enter` | 确认当前选择 |
+| Mouse input | Default action | Typical use |
+| --- | --- | --- |
+| Side Button 4 / X1 | `Up` | Move selection up |
+| Side Button 5 / X2 | `Down` | Move selection down |
+| Middle Button | `Enter` | Confirm current selection |
 
-桌面界面还支持：`Left`、`Right`、`Tab`、`Escape`、`PageUp`、`PageDown`、`Home`、`End` 和 `Space`。
+The desktop UI also supports actions such as `Left`, `Right`, `Tab`, `Escape`, `PageUp`, `PageDown`, `Home`, `End`, and `Space`.
 
-## 工作方式
+## How It Works
 
 ```mermaid
 flowchart LR
     M["Mouse Event"] --> H["WH_MOUSE_LL"]
-    H --> C["Foreground Context"]
+    H --> C["Foreground Window"]
     C --> S{"Activation Scope"}
     S -->|CLI matched| K["Key Mapping"]
     S -->|All windows| K
@@ -59,76 +60,64 @@ flowchart LR
     I --> T["Terminal / Target App"]
 ```
 
-在“仅 CLI”模式下，VibeKeys 只会拦截白名单终端中的已映射按键。窗口不匹配、映射被关闭或注入失败时，原始鼠标事件会继续传递。
+In CLI-only mode, VibeKeys intercepts mapped mouse buttons only when the foreground process matches the terminal allowlist.
 
-默认终端白名单：
+Default terminal allowlist:
 
 - `WindowsTerminal.exe`
 - `pwsh.exe`
 - `powershell.exe`
 - `cmd.exe`
 
-## 桌面界面
+## Desktop UI
+The left sidebar provides three independent workspaces:
 
-左侧导航提供三个独立工作区：
+- **Bindings**: Toggle mapping on/off and choose actions for X1, X2, and the middle button.
 
-- **键位映射 / Bindings**：启停映射，并为 X1、X2 与中键选择动作。
-- **鼠标设备 / Mouse devices**：查看系统检测到的品牌、VID、PID 和 Raw Input 设备路径。
-- **生效范围 / Activation scope**：在“仅 CLI”和“所有窗口”之间切换。
+- **Mouse devices**: View detected brand, VID, PID, and Raw Input device path.
 
-左侧的 `中 / EN` 控件可以即时切换界面语言。页面标题、导航、动作名称、保存状态和提示信息会一起切换。
+- **Activation scope**: Switch between "CLI only" and "All windows".
 
-## 安装
+The 中 / EN control on the left switches the UI language instantly. Page titles, navigation, action names, save status, and tooltips all switch together.
 
-### 使用发布版
+## Installation
 
-从 GitHub Releases 获取最新的 `VibeKeys.exe`，放在任意可写目录后直接运行。VibeKeys 是单 EXE 应用，不需要额外携带 HTML、DLL 或配置文件。
+Download `VibeKeys.exe` from GitHub Releases and run it directly.
 
-首次运行后，用户配置与 WebView2 数据会写入 Windows 用户数据目录，不会污染 EXE 所在目录。
+VibeKeys is a single EXE application. It does not require a separate browser window, local web server, HTML bundle, or external config file.
 
-### 从源码构建
-
-```powershell
-cd vibekeys
-cargo build --release
-```
-
-构建产物位于 `target\release\vibekeys.exe`。
-
-## 快速开始
-
-1. 获取或构建 `VibeKeys.exe`。
-2. 双击启动桌面应用。
-3. 在“键位映射”中选择动作。
-4. 在“生效范围”中保留“仅 CLI”，或按需选择“所有窗口”。
-5. 打开 Windows Terminal，在 `fzf` 或 `lazygit` 中按下鼠标侧键。
-
-最小化 VibeKeys 会隐藏到系统托盘并继续捕获；点击托盘图标或再次启动 EXE 可以恢复窗口。点击标题栏关闭按钮或托盘菜单中的“退出”会直接结束程序。配置保存在：
+User config is stored at:
 
 ```text
 %APPDATA%\VibeKeys\vibekeys.json
 ```
 
-WebView2 运行数据保存在 `%LOCALAPPDATA%\VibeKeys\WebView2`，EXE 所在目录不会产生缓存文件。
+WebView2 runtime data is stored at:
 
-## 托盘行为
+```text
+%LOCALAPPDATA%\VibeKeys\WebView2
+```
 
-| 操作 | 结果 |
-|---|---|
-| 点击最小化 | 隐藏主窗口并继续在托盘运行 |
-| 左键点击托盘图标 | 恢复并聚焦主窗口 |
-| 再次启动 EXE | 恢复现有实例，不重复挂载鼠标钩子 |
-| 点击标题栏关闭 | 直接结束程序 |
-| 托盘菜单“退出” | 直接结束程序 |
+## Quick Start
 
-## 配置
+1. Download `VibeKeys.exe` from Releases.
+2. Launch the desktop app.
+3. Open the Bindings page and choose actions for X1, X2, and Middle Button.
+4. Keep Activation Scope set to CLI Only for normal terminal-focused usage.
+5. Open Windows Terminal and try it inside `Codex CLI`, `Claude Code`, or another interactive CLI.
 
-桌面界面会自动维护配置。文件结构如下：
+When minimized, VibeKeys stays active in the system tray. Clicking the tray icon restores the window. Closing the window exits the app.
+
+## Configuration
+
+VibeKeys maintains its config automatically through the desktop UI.
+
+Example config:
 
 ```json
 {
   "enabled": true,
-  "language": "zh",
+  "language": "en",
   "terminal_processes": [
     "WindowsTerminal.exe",
     "pwsh.exe",
@@ -144,23 +133,20 @@ WebView2 运行数据保存在 `%LOCALAPPDATA%\VibeKeys\WebView2`，EXE 所在�
 }
 ```
 
-`scope` 可选值：
+Supported `scope` values:
 
-- `cli`：只在终端白名单中生效，推荐使用。
-- `all`：在所有前台窗口中生效，包括浏览器和桌面软件。
+- `cli`: only active in allowlisted terminal processes.
+- `all`: active in every foreground window.
 
-`language` 可选值为 `zh` 或 `en`，也可以直接在桌面界面左侧切换。
+`language` can be `zh` or `en`; you can also switch it directly in the desktop UI.
 
-`terminal_processes` 是“仅 CLI”模式使用的进程白名单。可直接在“生效范围”页面添加或移除进程；输入时省略 `.exe` 也可以，修改会自动保存并立即生效。
+`terminal_processes` is the process whitelist used by "CLI only" mode. You can add or remove processes in the Activation scope page; omitting .exe is fine, and changes are auto-saved and take effect immediately.
 
-## 隐私
 
-VibeKeys 不需要账户、不上传配置，也不包含遥测。窗口识别、鼠标捕获、设备枚举和配置读写都在本机完成。
+## Privacy
+VibeKeys requires no account, uploads no configuration, and contains no telemetry. Window identification, mouse capture, device enumeration, and config read/write are all performed locally.
 
-## 诊断命令
-
-<details>
-<summary><strong>展开 CLI 工具箱</strong></summary>
+## Diagnostic Commands
 
 ```powershell
 cargo run -- detect
@@ -171,104 +157,75 @@ cargo run -- init-config
 cargo run -- run --debug
 ```
 
-| 命令 | 用途 |
-|---|---|
-| `detect` | 只监听并打印中键、X1、X2 事件，不注入按键 |
-| `context` | 打印前台窗口标题、进程名、PID 与终端识别结果 |
-| `devices` | 枚举 Raw Input 鼠标设备，并尝试识别品牌与 VID/PID |
-| `inject <action>` | 向当前前台窗口注入单个键盘动作 |
-| `init-config` | 在当前目录生成默认配置 |
-| `run --debug` | 输出捕获、上下文、映射和注入的完整决策链 |
+| Command | Purpose |
+| --- | --- |
+| `detect` | Print middle, X1, and X2 mouse events without injecting keys. |
+| `context` | Print foreground window title, process name, PID, and terminal match status. |
+| `devices` | List Raw Input mouse devices with brand hints and VID/PID data. |
+| `inject <action>` | Inject one keyboard action into the current foreground window. |
+| `init-config` | Generate a default config in the current directory. |
+| `run --debug` | Print the full capture, context, mapping, and injection decision chain. |
 
-</details>
+## Requirements
 
-## 开发
-
-### 系统要求
-
-- Windows 10 或 Windows 11
-- Rust stable toolchain
+- Windows 10 or Windows 11
 - Microsoft Edge WebView2 Runtime
 
-Windows 10/11 通常已包含 WebView2 Runtime。
-
-### 测试
-
-```powershell
-cargo test
-```
-
-当前 12 项测试覆盖默认键位映射、生效范围、可配置终端白名单、语言默认值、终端识别、VID/PID 解析、动作解析、VK 图标像素和 `SendInput` 基础构造路径。
-
-### 手动验收
-
-1. 在 Windows Terminal 中启动 `fzf` 或 `lazygit`。
-2. 保持“仅 CLI”范围，确认 X1、X2 与中键能操作选择项。
-3. 切换到浏览器，确认侧键仍执行原始的前进、后退行为。
-4. 切换为“所有窗口”，确认映射能在普通软件中生效。
-5. 最小化应用，确认窗口进入托盘且映射继续运行。
-6. 点击托盘图标恢复，再点击关闭按钮确认进程退出。
-
-## 项目结构
+## Project Structure
 
 ```text
 src/
-├── capture.rs       # 低级鼠标钩子与事件拦截
-├── config.rs        # 配置、范围与持久化
-├── context.rs       # 前台窗口与进程识别
-├── desktop.rs       # 原生窗口、WebView2 与进程内 IPC
-├── devices.rs       # Raw Input 设备枚举
-├── diagnostics.rs   # 调试输出
-├── injector.rs      # SendInput 键盘注入
-├── icon_pixels.rs   # VK 图标像素源
-├── mapper.rs        # 鼠标按钮与键盘动作
-└── main.rs          # CLI 与桌面入口
+├─ capture.rs       # Low-level mouse hook and event capture
+├─ config.rs        # Config, activation scope, persistence
+├─ context.rs       # Foreground window and process detection
+├─ desktop.rs       # Native window, WebView2, IPC, tray behavior
+├─ devices.rs       # Raw Input device enumeration
+├─ diagnostics.rs   # Debug output
+├─ injector.rs      # SendInput keyboard injection
+├─ icon_pixels.rs   # VK icon pixel source
+├─ mapper.rs        # Mouse button to keyboard action mapping
+└─ main.rs          # CLI and desktop entrypoint
 
 ui/
-└── index.html       # 嵌入 EXE 的桌面界面
+└─ index.html       # Embedded desktop UI
 
-build.rs             # 生成并嵌入多尺寸 Windows 图标资源
+build.rs            # Generates and embeds Windows icon resources
 ```
 
-## 常见问题
+## FAQ
 
-### 为什么浏览器里的侧键也被改变了？
+### Do users need Rust?
 
-检查“生效范围”是否选择了“所有窗口”。切换回“仅 CLI”后，非终端窗口会收到原始鼠标事件。
+No. Rust is only required for building from source. End users only need Windows and WebView2 Runtime.
 
-### 为什么托盘图标没有显示在任务栏右侧？
+### Why are my browser side buttons being changed?
 
-Windows 可能把新图标放入 `^` 隐藏图标区域。也可以再次启动 `VibeKeys.exe`，现有托盘实例会恢复主窗口。
+Check Activation Scope. If it is set to All Windows, VibeKeys will map buttons globally. Switch back to CLI Only to preserve normal browser forward/back behavior.
 
-### 为什么无法操作管理员权限运行的终端？
+### Why does injection fail in an elevated terminal?
 
-Windows 完整性级别可能阻止普通权限进程向高权限窗口注入输入。让 VibeKeys 与目标终端处于相同权限级别后再试。
+Windows may block lower-privilege processes from injecting input into elevated windows. Run VibeKeys with the same privilege level as the target terminal.
 
-### 为什么窗口无法启动？
+### Why does my mouse brand show as Unknown?
 
-确认系统已安装 Microsoft Edge WebView2 Runtime。Windows 10/11 通常自带该组件，也可以从微软官方安装程序修复。
+Brand detection is based on hardware VID hints. It is only informational and does not affect button capture or mapping.
 
-### 鼠标品牌显示为 Unknown 会影响使用吗？
+## Privacy
 
-不会。品牌只是根据设备 VID 做的辅助识别，按键捕获与映射不依赖品牌名称。
+VibeKeys does not require an account, does not upload config, and does not include telemetry. Window detection, mouse capture, device enumeration, and config storage all happen locally.
 
-## 贡献
+## Current Scope
+Not included yet:
 
-Issue 和 Pull Request 都欢迎。提交问题时，建议附上：
+- macOS or Linux support
 
-- Windows 版本与终端名称
-- `cargo run -- devices` 的 VID/PID 信息
-- `cargo run -- run --debug` 中与问题相关的诊断输出
-- 鼠标侧键在浏览器或终端中的实际表现
-
-## 当前边界
-
-VibeKeys 仍处于 Windows-first MVP 阶段。目前没有宏系统、热重载或 macOS/Linux 支持。鼠标品牌识别基于硬件 VID，是尽力而为的辅助信息，不影响按键捕获与映射。
+## License
+MIT © Adobiz
 
 ---
 
 <div align="center">
 
-Built for people who live one command away from everything.
+Built for people deep in the flow of vibe coding.
 
 </div>
