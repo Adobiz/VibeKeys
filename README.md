@@ -69,7 +69,16 @@ Default terminal allowlist:
 - `powershell.exe`
 - `cmd.exe`
 
-You can add terminals such as `wezterm-gui.exe`, `alacritty.exe`, or `mintty.exe` from the Activation Scope page. The `.exe` suffix is optional when adding a process.
+## Desktop interface
+The left sidebar provides three independent workspaces:
+
+- **Bindings**: Toggle mapping on/off and choose actions for X1, X2, and the middle button.
+
+- **Mouse devices**: View detected brand, VID, PID, and Raw Input device path.
+
+- **Activation scope**: Switch between "CLI only" and "All windows".
+
+The 中 / EN control on the left switches the UI language instantly. Page titles, navigation, action names, save status, and tooltips all switch together.
 
 ## Requirements
 
