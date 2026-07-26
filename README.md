@@ -209,6 +209,6 @@ MIT © Adobiz
 
 <div align="center">
 
-Built for people who live one command away from everything.
+Built for people deep in the flow of vibe coding.
 
 </div>
