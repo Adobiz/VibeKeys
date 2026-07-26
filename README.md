@@ -10,7 +10,6 @@
 [![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=flat-square&logo=windows11&logoColor=white)](#系统要求)
 [![Rust](https://img.shields.io/badge/Rust-2024-000000?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![Status](https://img.shields.io/badge/status-MVP-17745B?style=flat-square)](#当前边界)
-[![Tests](https://img.shields.io/badge/tests-12%20passing-17745B?style=flat-square)](#开发)
 
 **Single EXE · Native Desktop UI · Real-time Mapping · CLI-aware**
 
@@ -192,23 +191,6 @@ cargo run -- run --debug
 
 Windows 10/11 通常已包含 WebView2 Runtime。
 
-### 测试
-
-```powershell
-cargo test
-```
-
-当前 12 项测试覆盖默认键位映射、生效范围、可配置终端白名单、语言默认值、终端识别、VID/PID 解析、动作解析、VK 图标像素和 `SendInput` 基础构造路径。
-
-### 手动验收
-
-1. 在 Windows Terminal 中启动 `fzf` 或 `lazygit`。
-2. 保持“仅 CLI”范围，确认 X1、X2 与中键能操作选择项。
-3. 切换到浏览器，确认侧键仍执行原始的前进、后退行为。
-4. 切换为“所有窗口”，确认映射能在普通软件中生效。
-5. 最小化应用，确认窗口进入托盘且映射继续运行。
-6. 点击托盘图标恢复，再点击关闭按钮确认进程退出。
-
 ## 项目结构
 
 ```text
@@ -263,7 +245,7 @@ Issue 和 Pull Request 都欢迎。提交问题时，建议附上：
 
 ## 当前边界
 
-VibeKeys 仍处于 Windows-first MVP 阶段。目前没有宏系统、热重载或 macOS/Linux 支持。鼠标品牌识别基于硬件 VID，是尽力而为的辅助信息，不影响按键捕获与映射。
+目前没有 macOS/Linux 支持。鼠标品牌识别基于硬件 VID，是尽力而为的辅助信息，不影响按键捕获与映射。
 
 ---
 
