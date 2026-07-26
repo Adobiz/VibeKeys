@@ -17,9 +17,9 @@
 
 ---
 
-VibeKeys 为 `codex CLI`、`claude code`、`kimi code` 等交互式 Agent 工具提供一套更简便的鼠标操作方式。它捕获鼠标侧键，识别当前前台窗口，并通过 Windows `SendInput` 注入键盘动作。
-
-默认情况下，映射只在终端窗口中生效。切回浏览器或其他软件时，鼠标仍保持原来的前进、后退行为。
+VibeKeys —— 为 Codex CLI、Claude Code、Kimi Code 等交互式 AI Agent 工具提供更便捷的鼠标操作方案
+  
+它通过捕获鼠标侧键，自动识别当前前台窗口，并利用 Windows SendInput API注入键盘指令，让你在不离开终端的情况下更流畅地操控 Agent。
 
 ## Highlights
 
@@ -181,15 +181,10 @@ cargo run -- run --debug
 
 </details>
 
-## 开发
-
-### 系统要求
+## 系统要求
 
 - Windows 10 或 Windows 11
-- Rust stable toolchain
 - Microsoft Edge WebView2 Runtime
-
-Windows 10/11 通常已包含 WebView2 Runtime。
 
 ## 项目结构
 
