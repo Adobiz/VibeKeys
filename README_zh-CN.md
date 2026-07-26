@@ -11,6 +11,8 @@
 [![Rust](https://img.shields.io/badge/Rust-2024-000000?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![Status](https://img.shields.io/badge/status-MVP-17745B?style=flat-square)](#当前边界)
 
+[English](README.md)  | 中文
+
 **Single EXE · Native Desktop UI · Real-time Mapping · CLI-aware**
 
 </div>
