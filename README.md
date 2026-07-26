@@ -72,19 +72,8 @@ You can add terminals such as `wezterm-gui.exe`, `alacritty.exe`, or `mintty.exe
 
 ## Requirements
 
-For users:
-
 - Windows 10 or Windows 11
 - Microsoft Edge WebView2 Runtime
-- No Rust installation required
-
-Most Windows 11 systems already include WebView2 Runtime. If the app opens with a blank window or fails to render the UI, install WebView2 Runtime from Microsoft.
-
-For developers:
-
-- Rust stable toolchain
-- MSVC Build Tools
-- Windows SDK
 
 ## Installation
 
